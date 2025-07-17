@@ -61,19 +61,4 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.post('/meals', authMiddleware, async (req, res) =>{
-    try{
-        const userID = req.user.userId;
-        const {image_url, description} = req.body;
-
-        const newMeal = await pool.query("INSERT INTO meals (user_id, image_url, description) VALUES ($1, $2, $3) RETURNING *", [userID, image_url, description]);
-
-        res.status(201).json(newMeal.rows[0]);
-    }catch (err){
-        console.error(err.message);
-        res.status(500).send("Erro no servidor");
-    }
-});
-
-
 module.exports = router;
