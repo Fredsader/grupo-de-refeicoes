@@ -17,6 +17,9 @@ app.use('/api/meals', mealsRoutes);
 const commentsRoutes = require('./routes/comments');
 app.use('/api/comments', commentsRoutes);
 
+const usersRoutes = require('./routes/users');
+app.use('/api/users', usersRoutes);
+
 app.get('/', (req, res) => {
   res.send('O coração do nosso site está batendo!');
 });

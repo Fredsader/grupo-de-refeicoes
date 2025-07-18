@@ -17,13 +17,14 @@ router.post('/', authMiddleware, async (req, res) =>{
     }
 });
 
-router.get('/user/:userId', async (req, res) => {
-    const {userId} = req.params;
-    console.log({userId});
-    const meal = await pool.query("SELECT * FROM meals WHERE user_id = ($1) ORDER BY created_at DESC ", [userId]);
+router.get('/:mealId', async (req, res) => {
+    const {mealId} = req.params;
+    console.log({mealId});
+    const meal = await pool.query("SELECT * FROM meals WHERE meal_id = ($1) ORDER BY created_at DESC ", [mealId]);
 
-    res.status(200).json(meal.rows);
+    res.status(200).json(meal.rows[0]);
 })
+
 
 
 module.exports = router;
