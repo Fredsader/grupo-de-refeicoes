@@ -20,8 +20,11 @@ app.use('/api/comments', commentsRoutes);
 const usersRoutes = require('./routes/users');
 app.use('/api/users', usersRoutes);
 
+const ratingsRoutes = require('./routes/ratings');
+app.use('/api/ratings', ratingsRoutes);
+
 app.get('/', (req, res) => {
-  res.send('O coração do nosso site está batendo!');
+res.send('O coração do nosso site está batendo!');
 });
 
 app.listen(PORT, () => {
