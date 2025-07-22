@@ -25,6 +25,16 @@ router.get('/:mealId', async (req, res) => {
     res.status(200).json(meal.rows[0]);
 })
 
+router.get('/', async (req, res) => {
+    try {
+      const meals = await pool.query("SELECT * FROM meals ORDER BY created_at DESC");
+      res.status(200).json(meals.rows);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Erro no servidor");
+    }
+  });
+
 
 
 module.exports = router;
